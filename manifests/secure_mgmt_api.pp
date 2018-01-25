@@ -71,7 +71,7 @@ $mgmt_port = $wildfly::properties['jboss.management.https.port']
   }
 
   exec { 'secure mgmt reload':
-    command     => "jboss-cli.sh -c ':reload'",
+    command     => "jboss-cli.sh -c ':reload'; sleep 5",
     refreshonly => true,
     returns     => ['0', '1'],
     path        => ['/bin', '/usr/bin', '/sbin', "${wildfly::dirname}/bin", "${wildfly::java_home}/bin"],
