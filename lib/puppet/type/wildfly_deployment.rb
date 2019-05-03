@@ -1,4 +1,5 @@
 require 'digest'
+require 'puppet/parameter/boolean'
 
 Puppet::Type.newtype(:wildfly_deployment) do
   desc 'Manages JBoss deployment'
@@ -44,7 +45,7 @@ Puppet::Type.newtype(:wildfly_deployment) do
   end
 
   newparam(:timeout) do
-    desc 'Operation timeout. Defaults to 120'
+    desc 'Operation timeout. Defaults to 300'
     defaultto 300
 
     munge(&:to_i)
@@ -57,6 +58,11 @@ Puppet::Type.newtype(:wildfly_deployment) do
     validate do |value|
       raise("#{value} is not a Hash") unless value.is_a?(Hash)
     end
+  end
+
+  newparam(:undeploy_first, :boolean => true, :parent => Puppet::Parameter::Boolean) do
+    desc 'Whether to perform an undeploy before redeploying'
+    defaultto :false # rubocop:disable Lint/BooleanSymbol
   end
 
   newproperty(:content) do
