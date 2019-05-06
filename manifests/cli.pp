@@ -30,7 +30,6 @@ define wildfly::cli(
   }
 
   wildfly_cli { $title:
-    require     => Service['wildfly'],
     command     => $command,
     username    => $username,
     password    => $password,
