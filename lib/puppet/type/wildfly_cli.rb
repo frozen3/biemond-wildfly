@@ -19,7 +19,6 @@ Puppet::Type.newtype(:wildfly_cli) do
 
   newparam(:refreshonly, :boolean => true, :parent => Puppet::Parameter::Boolean) do
     desc 'If this parameter is set, then CLI command will only run if the resource was notified'
-    defaultto false
   end
 
   newparam(:username) do
