@@ -34,7 +34,7 @@ define wildfly::cli(
     username    => $username,
     password    => $password,
     host        => $host,
-    port        => $port,
+    port        => $_port,
     secure      => $secure,
     unless      => $unless,
     onlyif      => $onlyif,
